@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avon Fashions - Help & Support</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Font Awesome for Icons (fa-bars and fa-xmark/fa-times) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom Font Setup (Inter) and basic body styling */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f9;
+        }
+        /* Custom scrollbar for aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9d174d; /* Avon Pink */
+            border-radius: 4px;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px; /* Large enough to accommodate content */
+        }
+        .main-gradient {
+            background: linear-gradient(135deg, #be185d 0%, #9d174d 100%); /* Pink to Darker Pink */
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header / Navigation -->
+    <header class="main-gradient text-white shadow-lg sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold tracking-tight">Avon Fashions</h1>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden sm:block">
+                <a href="#help" class="mx-3 hover:text-pink-200 transition duration-300">Help Center</a>
+                <a href="#contact" class="mx-3 hover:text-pink-200 transition duration-300">Contact Us</a>
+                <a href="#map" class="mx-3 hover:text-pink-200 transition duration-300">Kisii Town Map</a>
+            </nav>
+            
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="sm:hidden text-2xl p-2 rounded-lg hover:bg-[#9d174d] transition duration-200 focus:outline-none">
+                <i id="menu-icon" class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Panel - Initially hidden on all screens -->
+        <nav id="mobile-menu" class="hidden sm:hidden bg-[#be185d] transition-all duration-300 ease-in-out border-t border-pink-400/50">
+            <div class="px-4 pb-3 pt-2 space-y-2 flex flex-col items-start text-lg">
+                <a href="#help" class="w-full py-2 px-3 hover:bg-[#9d174d] rounded-lg transition duration-200">Help Center</a>
+                <a href="#contact" class="w-full py-2 px-3 hover:bg-[#9d174d] rounded-lg transition duration-200">Contact Us</a>
+                <a href="#map" class="w-full py-2 px-3 hover:bg-[#9d174d] rounded-lg transition duration-200">Kisii Town Map</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-5xl md:text-6xl font-extrabold text-[#be185d] mb-4">How Can We Help You Today?</h2>
+            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">Welcome to the Avon Fashions Support Hub. Find answers, get in touch, and track your orders quickly and easily.</p>
+            <div class="max-w-xl mx-auto">
+                <div class="relative">
+                    <input type="search" placeholder="Search FAQs or Orders..."
+                           class="w-full py-3 pl-12 pr-4 border border-gray-300 rounded-full shadow-md focus:ring-2 focus:ring-[#9d174d] focus:border-[#9d174d] transition duration-200">
+                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help & Support (FAQ) Section -->
+    <section id="help" class="py-16 bg-[#f8fafc]">
+        <div class="container mx-auto px-4">
+            <h3 class="text-4xl font-bold text-center mb-12 text-gray-800">Frequently Asked Questions</h3>
+
+            <div class="max-w-4xl mx-auto space-y-4" id="faq-container">
+                <!-- FAQ Item 1 -->
+                <div class="accordion-item bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                    <button class="accordion-header w-full text-left flex justify-between items-center text-xl font-semibold text-[#be185d]">
+                        <span>What is the status of my order?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content mt-4">
+                        <p class="text-gray-600 border-t pt-4">You can check the real-time status of your order by visiting the "My Orders" section after logging into your account. Please allow 24-48 hours for tracking information to appear after shipment confirmation.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="accordion-item bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                    <button class="accordion-header w-full text-left flex justify-between items-center text-xl font-semibold text-[#be185d]">
+                        <span>How can I return or exchange an item?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content mt-4">
+                        <p class="text-gray-600 border-t pt-4">We offer a 30-day return policy from the date of purchase. Items must be unused and in their original packaging. Please fill out the online Return Request Form in your account dashboard to start the process.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="accordion-item bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                    <button class="accordion-header w-full text-left flex justify-between items-center text-xl font-semibold text-[#be185d]">
+                        <span>Do you offer local delivery in Kisii Town?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content mt-4">
+                        <p class="text-gray-600 border-t pt-4">Yes, we provide same-day or next-day delivery services within Kisii Town and its immediate environs for a flat rate. Select the "Kisii Local Delivery" option at checkout.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="accordion-item bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                    <button class="accordion-header w-full text-left flex justify-between items-center text-xl font-semibold text-[#be185d]">
+                        <span>What payment methods are accepted?</span>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                    </button>
+                    <div class="accordion-content mt-4">
+                        <p class="text-gray-600 border-t pt-4">We accept M-Pesa, major credit/debit cards (Visa, MasterCard), and cash on delivery for local Kisii orders. All transactions are securely processed.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information & Form Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h3 class="text-4xl font-bold text-center mb-12 text-gray-800">Get In Touch</h3>
+
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Contact Details Card -->
+                <div class="bg-[#be185d] text-white p-8 rounded-xl shadow-2xl">
+                    <h4 class="text-2xl font-semibold mb-6">Our Contact Details (Kisii Branch)</h4>
+
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-phone-alt text-2xl"></i>
+                            <div>
+                                <p class="font-light">Call Us</p>
+                                <p class="text-lg font-medium">+254 7XX XXX 890</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-envelope text-2xl"></i>
+                            <div>
+                                <p class="font-light">Email Support</p>
+                                <p class="text-lg font-medium">support@avonfashions.co.ke</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-location-dot text-2xl"></i>
+                            <div>
+                                <p class="font-light">Kisii Physical Address</p>
+                                <p class="text-lg font-medium">Avon Plaza, 3rd Floor, Hospital Road, Kisii Town, Kenya</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-clock text-2xl"></i>
+                            <div>
+                                <p class="font-light">Operating Hours</p>
+                                <p class="text-lg font-medium">Mon - Fri: 8:00 AM - 5:00 PM (EAT)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-[#f8fafc] p-8 rounded-xl shadow-lg border border-gray-200">
+                    <h4 class="text-2xl font-semibold mb-6 text-gray-700">Send Us a Message</h4>
+                    <form id="contact-form" class="space-y-4">
+                        <input type="text" placeholder="Your Name" required
+                               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#be185d] focus:border-[#be185d]">
+                        <input type="email" placeholder="Your Email" required
+                               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#be185d] focus:border-[#be185d]">
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#be185d] focus:border-[#be185d]">
+                            <option>Select Inquiry Type</option>
+                            <option>Order Tracking</option>
+                            <option>Product Information</option>
+                            <option>Return/Exchange</option>
+                            <option>General Inquiry</option>
+                        </select>
+                        <textarea placeholder="Your Message" rows="4" required
+                                  class="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#be185d] focus:border-[#be185d]"></textarea>
+
+                        <button type="submit"
+                                class="main-gradient text-white font-bold py-3 px-6 rounded-full w-full hover:bg-[#a3174d] transition duration-300 transform hover:scale-105 shadow-md">
+                            Submit Request
+                        </button>
+                    </form>
+                    <div id="form-message" class="mt-4 p-3 bg-green-100 text-green-700 rounded-lg hidden"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kisii Town Map Section -->
+    <section id="map" class="py-16 bg-[#f4f4f9]">
+        <div class="container mx-auto px-4">
+            <h3 class="text-4xl font-bold text-center mb-12 text-gray-800">Kisii Town Location Map</h3>
+
+            <div class="relative w-full overflow-hidden rounded-xl shadow-2xl" style="padding-top: 56.25%;">
+                <!-- 16:9 Aspect Ratio -->
+                <iframe
+                    class="absolute top-0 left-0 w-full h-full border-0 rounded-xl"
+                    loading="lazy"
+                    allowfullscreen
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15957.570222165082!2d34.76442657805166!3d-0.6781488880650912!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182b53f6312a0283%3A0xc3c94d07525287f7!2sKisii%20Town!5e0!3m2!1sen!2ske!4v1700681234567!5m2!1sen!2ske">
+                </iframe>
+            </div>
+
+            <div class="text-center mt-6 text-gray-500">
+                The map above highlights the central business district of Kisii Town where our main support office is located.
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-gradient text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-4 space-x-6">
+                <a href="#" class="hover:text-pink-200 transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-pink-200 transition duration-300"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-pink-200 transition duration-300"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Avon Fashions. All rights reserved. | Powered by Modern Support</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set the current year in the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // 1. FAQ Accordion Logic
+        const faqContainer = document.getElementById('faq-container');
+        faqContainer.addEventListener('click', function(event) {
+            // Find the closest header element that was clicked
+            const header = event.target.closest('.accordion-header');
+
+            if (header) {
+                const item = header.closest('.accordion-item');
+                const content = item.querySelector('.accordion-content');
+                const icon = header.querySelector('.fa-chevron-down');
+                const isActive = item.classList.contains('active');
+
+                // Close all other active items
+                document.querySelectorAll('.accordion-item.active').forEach(activeItem => {
+                    if (activeItem !== item) {
+                        activeItem.classList.remove('active');
+                        activeItem.querySelector('.accordion-content').style.maxHeight = '0';
+                        activeItem.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                // Toggle the clicked item
+                if (!isActive) {
+                    item.classList.add('active');
+                    // Setting max-height to scrollHeight ensures smooth opening based on content size
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    item.classList.remove('active');
+                    content.style.maxHeight = '0';
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
+        });
+
+        // 2. Contact Form Submission Logic (MOCK)
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Simulate form submission success
+            formMessage.textContent = 'Thank you for contacting us! Your request has been successfully submitted and a team member will reply within 24 hours.';
+            formMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+            formMessage.classList.add('bg-green-100', 'text-green-700');
+
+            // Optionally clear the form
+            contactForm.reset();
+
+            // Hide the message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 5000);
+        });
+        
+        // 3. Mobile Menu Toggle Logic
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuButton.addEventListener('click', function() {
+            // Toggle the visibility of the menu
+            mobileMenu.classList.toggle('hidden');
+
+            // Change the icon from bars to x-mark
+            if (mobileMenu.classList.contains('hidden')) {
+                // Menu is now closed, show bars
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                // Menu is now open, show x-mark
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // Optional: Close menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>

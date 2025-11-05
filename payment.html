@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avon Payments</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #a0d8ef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Payment Card */
+.payment-card {
+    background: #ffffffee;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 400px;
+    padding: 25px 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* Product image */
+.product-preview {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 10px;
+    margin: 10px auto;
+    display: block;
+}
+
+/* Form */
+.form-section {
+    display: none;
+    text-align: left;
+}
+.form-control {
+    border-radius: 10px;
+    padding: 10px;
+}
+.form-control:focus {
+    border-color: #00a859;
+    box-shadow: 0 0 6px rgba(0,168,89,0.5);
+}
+.pay-btn, .proceed-btn {
+    background-color: #00a859;
+    color: #fff;
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.pay-btn:disabled { background-color: #a5d6a7; cursor: not-allowed; }
+.loader {
+    border: 3px solid #fff;
+    border-top: 3px solid #00a859;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% {transform:rotate(0deg);} 100% {transform:rotate(360deg);} }
+
+/* Responsive */
+@media(max-width:480px) {
+    .payment-card { width: 95%; padding: 15px; }
+    .product-preview { max-width: 180px; }
+    .form-control { font-size: 0.85rem; padding: 7px; }
+    .pay-btn, .proceed-btn { font-size: 0.85rem; padding: 8px; }
+}
+</style>
+</head>
+<body>
+
+<div class="payment-card">
+    <h2>Avon Fashions <i class="fa-brands fa-shopify" style="color:#0db14b;"></i></h2>
+
+    <!-- Step 1: Show product -->
+    <div id="productSection">
+        <img id="productImage" class="product-preview" src="" alt="Product Image">
+        <h4 id="productName"></h4>
+        <p>KES <span id="productPrice"></span></p>
+        <button class="proceed-btn" id="proceedBtn">Proceed to Pay</button>
+    </div>
+
+    <!-- Step 2: Form -->
+    <div id="formSection" class="form-section">
+        <form id="paymentForm" novalidate>
+            <div class="mb-3">
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Enter full name" required>
+            </div>
+            <div class="mb-3">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="tel" class="form-control" id="phoneNumber" maxlength="10" placeholder="Enter number" required>
+            </div>
+            <div class="mb-3">
+                <label for="deliveryDate">Delivery Date</label>
+                <input type="date" class="form-control" id="deliveryDate" onfocus="this.showPicker()" required>
+            </div>
+            <div class="mb-3">
+                <label for="amount">Amount (KES)</label>
+                <input type="number" class="form-control" id="amount" readonly>
+            </div>
+            <button type="button" class="pay-btn" id="payBtn"><span class="btn-text">Pay Now</span></button>
+        </form>
+    </div>
+</div>
+
+<script>
+// Get product info from URL
+const urlParams = new URLSearchParams(window.location.search);
+const productName = urlParams.get('name');
+const productPrice = urlParams.get('price');
+const productImg = urlParams.get('img');
+
+// Populate Step 1
+document.getElementById('productName').textContent = productName;
+document.getElementById('productPrice').textContent = productPrice;
+document.getElementById('productImage').src = productImg;
+
+// Proceed to form
+const proceedBtn = document.getElementById('proceedBtn');
+const productSection = document.getElementById('productSection');
+const formSection = document.getElementById('formSection');
+
+proceedBtn.addEventListener('click', () => {
+    productSection.style.display = 'none';
+    formSection.style.display = 'block';
+    document.getElementById('amount').value = productPrice;
+
+    // Set minimum delivery date to today
+    const today = new Date().toISOString().split("T")[0];
+    document.getElementById("deliveryDate").setAttribute("min", today);
+});
+
+// Form validation
+const fullName = document.getElementById("fullName"),
+      phoneNumber = document.getElementById("phoneNumber"),
+      deliveryDate = document.getElementById("deliveryDate"),
+      amount = document.getElementById("amount"),
+      payBtn = document.getElementById("payBtn");
+
+function validateForm() {
+    const nameValid = fullName.value.trim().length > 1;
+    const phoneValid = /^\d{10}$/.test(phoneNumber.value.trim());
+    const dateValid = deliveryDate.value !== "";
+    let amtValid = amount.value !== "" && Number(amount.value) > 0 && Number(amount.value) < 10000;
+    if(amount.value !== "" && Number(amount.value) >= 10000) {
+        alert("Amount must be less than 10000 KES");
+        amount.value = "";
+        amtValid = false;
+    }
+    payBtn.disabled = !(nameValid && phoneValid && dateValid && amtValid);
+}
+[fullName, phoneNumber, deliveryDate].forEach(i => i.addEventListener("input", validateForm));
+
+// PayHero redirect with 2s loader
+payBtn.addEventListener('click', () => {
+    const btnText = payBtn.querySelector('.btn-text');
+    btnText.innerHTML = '<div class="loader"></div> Processing...';
+    payBtn.disabled = true;
+
+    setTimeout(() => {
+        const accountId = "3513", channelId = "4064", reference = "REF" + Date.now();
+        const url = `https://app.payhero.co.ke/lipwa/${accountId}?amount=${amount.value.trim()}&phone=${phoneNumber.value.trim()}&name=${encodeURIComponent(fullName.value.trim())}&channel_id=${channelId}&reference=${reference}`;
+        window.location.href = url;
+    }, 2000); // 2 second loader
+});
+</script>
+</body>
+</html>

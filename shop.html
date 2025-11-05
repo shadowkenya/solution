@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AVON FASHIONS</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <link href="img/favicon.ico" rel="icon">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* Basic styling for the simulated payment page - can be more complex */
+        .payment-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .payment-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+       <div class="col-lg-6 text-center text-lg-right">
+    <div class="d-inline-flex align-items-center">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/profile.php?id=100088387850218" target="_blank" 
+           style="color: #1877F2; margin: 0 10px; font-size: 28px;">
+            <i class="fab fa-facebook"></i>
+        </a>
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/254790248509" target="_blank" 
+           style="color: #25D366; margin: 0 10px; font-size: 28px;">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <!-- TikTok -->
+      <a href="https://www.tiktok.com/@shadowtechpro" target="_blank" 
+               style="margin: 0 10px; display: flex; align-items: center;">
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" 
+                     alt="TikTok" style="width: 36px; height: 34px;">
+            </a>
+    </div>
+</div>
+        <div class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a href="" class="text-decoration-none">
+                    <h3 class="m-0 display-5 font-weight-semi-bold"><span
+                            class="text-primary font-weight-bold border px-3 mr-1">Fashions</h3>
+                </a>
+            </div>
+            <div class="container-fluid">
+                <div class="row border-top px-xl-5">
+                    <div class="col-lg-3 d-none d-lg-block">
+                        <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
+                            data-toggle="collapse" href="#navbar-vertical"
+                            style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                            <h6 class="m-0">Categories</h6>
+                            <i class="fa fa-angle-down text-dark"></i>
+                        </a>
+                        <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
+                            id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
+                            <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link" data-toggle="dropdown">Dresses <i
+                                            class="fa fa-angle-down float-right mt-1"></i></a>
+                                    <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                        <a href="#" class="nav-link" data-toggle="dropdown">Dresses <i
+                                                class="fa fa-angle-down float-right mt-1"></i></a>
+                                        <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                            <a href="" class="dropdown-item">Sheath Dress</a>
+                                            <a href="" class="dropdown-item"> A-Line Dress</a>
+                                            <a href="" class="dropdown-item">Maxi Dress</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="" class="nav-item nav-link">Attires</a>
+                                <a href="" class="nav-item nav-link">Shoes</a>
+
+                            </div>
+                    </div>
+                    </nav>
+                </div>
+                <div class="col-lg-9">
+                    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                        <a href="" class="text-decoration-none d-block d-lg-none">
+                            <h3 class="m-0 display-5 font-weight-semi-bold"><span
+                                    class="text-primary font-weight-bold border px-3 mr-1">AVON</span>Fashions</h3>
+                        </a>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse"
+                            data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto py-0">
+                                <a href="index.html" class="nav-item nav-link">Home</a>
+                                <a href="shop.html" class="nav-item nav-link active">Shop</a>
+                            </div>
+                            <div class="navbar-nav ml-auto py-0">
+                                <a href="" class="nav-item nav-link">Login</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid bg-secondary mb-5">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+                <h1 class="font-weight-semi-bold text-uppercase mb-3">Our Shop</h1>
+                <div class="d-inline-flex">
+                    <p class="m-0"><a href="">Home</a></p>
+                    <p class="m-0 px-2">-</p>
+                    <p class="m-0">Shop</p>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid pt-5">
+            <div class="row px-xl-5">
+                <div class="col-lg-3 col-md-12">
+                    <div class="border-bottom mb-4 pb-4">
+                        <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
+                        <form>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" checked id="price-all">
+                                <label class="custom-control-label" for="price-all">All Price</label>
+                                <span class="badge border font-weight-normal">1000</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-1">
+                                <label class="custom-control-label" for="price-1">0 - 200</label>
+                                <span class="badge border font-weight-normal">150</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-2">
+                                <label class="custom-control-label" for="price-2">100 - 300</label>
+                                <span class="badge border font-weight-normal">295</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-3">
+                                <label class="custom-control-label" for="price-3">200 - 500</label>
+                                <span class="badge border font-weight-normal">246</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="price-4">
+                                <label class="custom-control-label" for="price-4">300 - 400</label>
+                                <span class="badge border font-weight-normal">145</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                                <input type="checkbox" class="custom-control-input" id="price-5">
+                                <label class="custom-control-label" for="price-5">400 - 1500</label>
+                                <span class="badge border font-weight-normal">168</span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="border-bottom mb-4 pb-4">
+                        <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
+                        <form>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" checked id="color-all">
+                                <label class="custom-control-label" for="price-all">All Color</label>
+                                <span class="badge border font-weight-normal">1000</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="color-1">
+                                <label class="custom-control-label" for="color-1">Black</label>
+                                <span class="badge border font-weight-normal">150</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="color-2">
+                                <label class="custom-control-label" for="color-2">White</label>
+                                <span class="badge border font-weight-normal">295</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="color-3">
+                                <label class="custom-control-label" for="color-3">Red</label>
+                                <span class="badge border font-weight-normal">246</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="color-4">
+                                <label class="custom-control-label" for="color-4">Blue</label>
+                                <span class="badge border font-weight-normal">145</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                                <input type="checkbox" class="custom-control-input" id="color-5">
+                                <label class="custom-control-label" for="color-5">Green</label>
+                                <span class="badge border font-weight-normal">168</span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="mb-5">
+                        <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
+                        <form>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" checked id="size-all">
+                                <label class="custom-control-label" for="size-all">All Size</label>
+                                <span class="badge border font-weight-normal">1000</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="size-1">
+                                <label class="custom-control-label" for="size-1">XS</label>
+                                <span class="badge border font-weight-normal">150</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="size-2">
+                                <label class="custom-control-label" for="size-2">S</label>
+                                <span class="badge border font-weight-normal">295</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="size-3">
+                                <label class="custom-control-label" for="size-3">M</label>
+                                <span class="badge border font-weight-normal">246</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input type="checkbox" class="custom-control-input" id="size-4">
+                                <label class="custom-control-label" for="size-4">L</label>
+                                <span class="badge border font-weight-normal">145</span>
+                            </div>
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                                <input type="checkbox" class="custom-control-input" id="size-5">
+                                <label class="custom-control-label" for="size-5">XL</label>
+                                <span class="badge border font-weight-normal">168</span>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                <div class="col-lg-9 col-md-12">
+                    <div class="row pb-3">
+                        <div class="col-12 pb-1">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <form action="">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search by name">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text bg-transparent text-primary">
+                                                <i class="fa fa-search"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="dropdown ml-4">
+                                    <button class="btn border dropdown-toggle" type="button" id="triggerId"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Sort by
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+                                        <a class="dropdown-item" href="#">Latest</a>
+                                        <a class="dropdown-item" href="#">Popularity</a>
+                                        <a class="dropdown-item" href="#">Best Rating</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                            <div class="card product-item border-0 mb-4">
+                                <div
+                                    class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="img/a1.jpg" alt="">
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">outfit</h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6>ksh 400.00</h6><h6 class="text-muted ml-2"></h6>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="" class="btn btn-sm text-dark p-0"><i
+                                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <button class="btn btn-sm text-dark p-0 buy-now-btn" data-product="outfit 1"
+                                        data-price="400.00"><i class="fas fa-money-bill-wave text-primary mr-1"></i>Buy
+                                        now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                            <div class="card product-item border-0 mb-4">
+                                <div
+                                    class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="img/a2.jpg" alt="">
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">outfit</h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6>ksh 350.00</h6><h6 class="text-muted ml-2"></h6>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="" class="btn btn-sm text-dark p-0"><i
+                                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <button class="btn btn-sm text-dark p-0 buy-now-btn" data-product="outfit 2"
+                                        data-price="350.00"><i class="fas fa-money-bill-wave text-primary mr-1"></i>Buy
+                                        now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                            <div class="card product-item border-0 mb-4">
+                                <div
+                                    class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="img/a3.jpg" alt="">
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">outfit</h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6>ksh 580</h6>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="" class="btn btn-sm text-dark p-0"><i
+                                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <button class="btn btn-sm text-dark p-0 buy-now-btn" data-product="outfit 3"
+                                        data-price="580.00"><i class="fas fa-money-bill-wave text-primary mr-1"></i>Buy
+                                        now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                            <div class="card product-item border-0 mb-4">
+                                <div
+                                    class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="img/a4.jpg" alt="">
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">outfit</h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6>ksh 650</h6>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="" class="btn btn-sm text-dark p-0"><i
+                                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <button class="btn btn-sm text-dark p-0 buy-now-btn" data-product="outfit 4"
+                                        data-price="650.00"><i class="fas fa-money-bill-wave text-primary mr-1"></i>Buy
+                                        now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                            <div class="card product-item border-0 mb-4">
+                                <div
+                                    class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="img/05.jpg" alt="">
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">outfit</h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6>ksh 780</h6>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="" class="btn btn-sm text-dark p-0"><i
+                                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <button class="btn btn-sm text-dark p-0 buy-now-btn" data-product="outfit 5"
+                                        data-price="780.00"><i class="fas fa-money-bill-wave text-primary mr-1"></i>Buy
+                                        now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                            <div class="card product-item border-0 mb-4">
+                                <div
+                                    class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="img/08.jpg" alt="">
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">outfit</h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6>ksh 650</h6>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="" class="btn btn-sm text-dark p-0"><i
+                                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <button class="btn btn-sm text-dark p-0 buy-now-btn" data-product="outfit 6"
+                                        data-price="650.00"><i class="fas fa-money-bill-wave text-primary mr-1"></i>Buy
+                                        now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                            <div class="card product-item border-0 mb-4">
+                                <div
+                                    class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="img/04.jpg" alt="">
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">outfit</h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6>ksh 480.00</h6>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="" class="btn btn-sm text-dark p-0"><i
+                                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <button class="btn btn-sm text-dark p-0 buy-now-btn" data-product="outfit 7"
+                                        data-price="480.00"><i class="fas fa-money-bill-wave text-primary mr-1"></i>Buy
+                                        now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                            <div class="card product-item border-0 mb-4">
+                                <div
+                                    class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="img/r2.jpg" alt="">
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">Outfit</h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6>ksh 380.00</h6><h6 class="text-muted ml-2"></h6>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="" class="btn btn-sm text-dark p-0"><i
+                                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <button class="btn btn-sm text-dark p-0 buy-now-btn" data-product="outfit 8"
+                                        data-price="380.00"><i class="fas fa-money-bill-wave text-primary mr-1"></i>Buy
+                                        now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                            <div class="card product-item border-0 mb-4">
+                                <div
+                                    class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="img/d2.jpg" alt="">
+                                </div>
+                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">outfit</h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6>ksh 360</h6><h6 class="text-muted ml-2"></h6>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-between bg-light border">
+                                    <a href="" class="btn btn-sm text-dark p-0"><i
+                                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <button class="btn btn-sm text-dark p-0 buy-now-btn" data-product="outfit 9"
+                                        data-price="360.00"><i class="fas fa-money-bill-wave text-primary mr-1"></i>Buy
+                                        now</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 pb-1">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination justify-content-center mb-3">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+        <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+            <div class="row px-xl-5 pt-5">
+                <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                    <a href="" class="text-decoration-none">
+                        <h1 class="mb-4 display-5 font-weight-semi-bold"><span
+                                class="text-primary font-weight-bold border border-white px-3 mr-1">AVON</span></h1>
+                    </a>
+                    <p>Affordable style delivered right to your door, because confidence never goes out of season.</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Kisii 408-40200 Kisii,Kenya
+                    </p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>Msarha@gmail.com</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+254 790 248509</p>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 mb-5">
+                            <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                            <div class="d-flex flex-column justify-content-start">
+                                <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                                <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our
+                                    Shop</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-5">
+                            <h5 class="font-weight-bold text-dark mb-4">Subscribe</h5>
+                            <form action="">
+                                <div class="form-group">
+                                    <input type="text" class="form-control border-0 py-4" placeholder="Your Name"
+                                        required="required" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
+                                        required="required" />
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe
+                                        Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row border-top border-light mx-xl-5 py-4">
+                <div class="col-md-6 px-xl-0">
+                    <p class="mb-md-0 text-center text-md-left text-dark">
+                        &copy; <a class="text-dark font-weight-semi-bold" href="#">AVON FASHIONS</a>. All Rights
+                        Reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="paymentModal" class="payment-modal">
+            <div class="payment-content">
+                <span class="close-btn">&times;</span>
+                <h3>Payment Gateway</h3>
+                <p id="payment-details">Preparing transaction for:...</p>
+                <div class="spinner-border text-primary" role="status" id="loading-spinner" style="display: none;">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div id="payment-form">
+                    <p>Simulated payment page for: <strong id="modal-product-name"></strong></p>
+                    <p>Amount: **Ksh <span id="modal-product-price"></span>**</p>
+                    <p>*(This is a simulated page. In a real application, a secure payment form would be here.)*</p>
+                    <button class="btn btn-primary">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                const modal = $('#paymentModal');
+                const span = $('.close-btn');
+                const buyNowButtons = $('.buy-now-btn');
+                const loadingSpinner = $('#loading-spinner');
+                const paymentDetails = $('#payment-details');
+                const paymentForm = $('#payment-form');
+                const modalProductName = $('#modal-product-name');
+                const modalProductPrice = $('#modal-product-price');
+
+                buyNowButtons.on('click', function () {
+                    const productName = $(this).data('product');
+                    const productPrice = $(this).data('price');
+
+                    // 1. Hide form and show loading spinner
+                    paymentForm.hide();
+                    loadingSpinner.show();
+                    paymentDetails.text(`Initiating secure payment for ${productName} (Ksh ${productPrice})...`);
+                    modal.show(); // Show modal immediately
+
+                    // 2. Simulate 2-second loading time
+                    setTimeout(function () {
+                        // 3. After 2 seconds, update modal details and show form
+                        loadingSpinner.hide();
+                        modalProductName.text(productName);
+                        modalProductPrice.text(productPrice);
+                        paymentDetails.text('Transaction details loaded successfully.');
+                        paymentForm.show();
+
+                    }, 2000); // 2000 milliseconds = 2 seconds
+                });
+
+                // Close modal on 'x' click
+                span.on('click', function () {
+                    modal.hide();
+                });
+
+                // Close modal when clicking outside
+                $(window).on('click', function (event) {
+                    if (event.target == modal[0]) {
+                        modal.hide();
+                    }
+                });
+            });
+        </script>
+</body>
+
+</html>

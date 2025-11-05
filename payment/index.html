@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avon Payments</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+html, body{height:100%;margin:0;font-family:Arial,sans-serif;overflow:hidden;background:#a0d8ef;position:relative;display:flex;align-items:center;justify-content:center}
+.emoji-container{position:absolute;width:100%;height:100%;overflow:hidden;pointer-events:none;z-index:0}
+.emoji{position:absolute;font-size:2rem;animation:float linear infinite;user-select:none}
+@keyframes float{0%{transform:translateY(100vh) translateX(0);opacity:0}10%{opacity:1}100%{transform:translateY(-10vh) translateX(var(--x));opacity:0}}
+.payment-card{background:#ffffffee;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,0.2);width:90%;max-width:400px;padding:25px 20px;text-align:left;position:relative;z-index:1}
+.payment-card h2{color:#00a859;font-weight:bold;margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:1.4rem}
+.payment-card label{font-weight:bold;display:block;margin-bottom:5px;color:#333;font-size:0.95rem}
+.form-control{border-radius:10px;padding:10px;font-size:0.95rem}
+.form-control:focus{border-color:#00a859;box-shadow:0 0 6px rgba(0,168,89,0.5)}
+.pay-btn{background-color:#00a859;color:#fff;width:100%;padding:12px;border-radius:10px;border:none;font-weight:bold;font-size:1rem;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px}
+.pay-btn:disabled{background-color:#a5d6a7;cursor:not-allowed}
+.loader{border:3px solid #fff;border-top:3px solid #00a859;border-radius:50%;width:18px;height:18px;animation:spin 1s linear infinite}
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.footer-box{margin-top:15px;font-size:0.75rem;color:#555;text-align:center}
+.popup{position:fixed;bottom:15px;right:15px;background:#00a859;color:#fff;padding:10px 15px;border-radius:10px;box-shadow:0 5px 12px rgba(0,0,0,0.3);display:none;z-index:10;font-size:0.85rem}
+@media(max-width:480px){.payment-card{padding:15px;max-width:95%}.payment-card h2{font-size:1.2rem}.form-control{font-size:0.85rem}.pay-btn{font-size:0.9rem;padding:10px}}
+</style>
+</head>
+<body>
+
+<div class="emoji-container" id="emojiContainer"></div>
+
+<div class="payment-card">
+<h2>Avon Fashions <i class="fa-brands fa-shopify" style="color:#0db14b;"></i></h2>
+<form id="paymentForm" novalidate>
+<div class="mb-3"><label for="fullName">Full Name</label><input type="text" class="form-control" id="fullName" placeholder="Enter full name" required></div>
+<div class="mb-3"><label for="phoneNumber">Phone Number</label><input type="tel" class="form-control" id="phoneNumber" maxlength="10" placeholder="Enter number" required></div>
+<div class="mb-3"><label for="deliveryDate">Delivery Date</label><input type="date" class="form-control" id="deliveryDate" onfocus="this.showPicker()" required></div>
+<div class="mb-3"><label for="amount">Amount (KES)</label><input type="number" class="form-control" id="amount" placeholder="Enter amount " min="1" max="10000" required></div>
+<button type="button" class="pay-btn" id="payBtn"><span class="btn-text">Pay Now</span></button>
+</form>
+<div class="footer-box">© 2025 Smart World Solution. All Rights Reserved.</div>
+</div>
+
+<div class="popup" id="popup"></div>
+
+<script>
+const today=new Date().toISOString().split("T")[0];document.getElementById("deliveryDate").setAttribute("min",today);
+const fullName=document.getElementById("fullName"),phoneNumber=document.getElementById("phoneNumber"),deliveryDate=document.getElementById("deliveryDate"),amount=document.getElementById("amount"),payBtn=document.getElementById("payBtn");
+
+// Validate form including amount <200
+function validateForm(){
+    const nameValid = fullName.value.trim().length>1;
+    const phoneValid = /^\d{10}$/.test(phoneNumber.value.trim());
+    const dateValid = deliveryDate.value!=="";
+    let amtValid = amount.value!="" && Number(amount.value)>0 && Number(amount.value)<10000;
+    if(amount.value!="" && Number(amount.value)>=200){alert("Amount must be less than 10000 KES"); amount.value=""; amtValid=false;}
+    payBtn.disabled = !(nameValid && phoneValid && dateValid && amtValid);
+}
+[fullName,phoneNumber,deliveryDate,amount].forEach(i=>i.addEventListener("input",validateForm));
+
+// Emoji animation
+const emojis=['🎈','❤️','💛','💚','💙','💖','💞','💕','💝'],container=document.getElementById('emojiContainer');
+function createEmoji(){const e=document.createElement('div');e.className='emoji';e.style.left=Math.random()*100+'vw';e.style.fontSize=(Math.random()*24+18)+'px';e.style.setProperty('--x',(Math.random()*50-25)+'vw');e.textContent=emojis[Math.floor(Math.random()*emojis.length)];e.style.animationDuration=(Math.random()*10+5)+'s';container.appendChild(e);setTimeout(()=>e.remove(),15000)}
+setInterval(createEmoji,500);
+
+// PayHero redirect with loader and 20s auto-clear
+function redirectToPayHero(){
+    const btnText=payBtn.querySelector('.btn-text');
+    btnText.innerHTML='<div class="loader"></div> Processing...';
+    payBtn.disabled=true;
+    // Auto-clear form 20s after payment click
+    setTimeout(()=>{document.getElementById("paymentForm").reset();payBtn.disabled=true;btnText.innerHTML="Pay Now"},20000);
+    // Redirect to PayHero after 3s loader
+    setTimeout(()=>{
+        const accountId="3513",channelId="4064",reference="REF"+Date.now();
+        const url=`https://app.payhero.co.ke/lipwa/${accountId}?amount=${amount.value.trim()}&phone=${phoneNumber.value.trim()}&name=${encodeURIComponent(fullName.value.trim())}&channel_id=${channelId}&reference=${reference}`;
+        window.location.href=url;
+    },3000);
+}
+payBtn.addEventListener("click",redirectToPayHero);
+
+// Recent purchase popup
+const popup=document.getElementById('popup'),usedNames=new Set();
+function randomName(){const f=["Peter","Mary","John","Linda","James","Rose","Michael","Faith","David","Grace"],l=["Ochieng","Kamau","Otieno","Wanjiku","Mwangi","Chebet","Njoroge","Achieng"];let n;do{n=f[Math.floor(Math.random()*f.length)]+" "+l[Math.floor(Math.random()*l.length)]}while(usedNames.has(n));usedNames.add(n);return n}
+function randomPhoneMasked(){const n="07"+Math.floor(10000000+Math.random()*90000000).toString();return n.slice(0,3)+"xxxx"+n.slice(-2)}
+function showPopup(){const n=randomName(),p=randomPhoneMasked();popup.textContent=`${n} (${p}) has purchased now!`;popup.style.display='block';setTimeout(()=>popup.style.display='none',4000)}
+setInterval(showPopup,Math.random()*6000+6000);
+
+// Initial form validation
+validateForm();
+</script>
+
+</body>
+</html>
