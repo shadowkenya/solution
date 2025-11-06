@@ -1,188 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avon Payments</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #a0d8ef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avon Payments</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #a0d8ef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        /* Payment Card */
-        .payment-card {
-            background: #ffffffee;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            width: 90%;
-            max-width: 400px;
-            padding: 25px 20px;
-            text-align: center;
-        }
+.payment-card {
+    background: #ffffffee;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 400px;
+    padding: 25px 20px;
+    text-align: center;
+}
 
-        /* Product Preview */
-        .product-preview {
-            width: 100%;
-            max-width: 250px;
-            border-radius: 10px;
-            margin: 10px auto;
-            display: block;
-        }
+.product-preview {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 10px;
+    margin: 10px auto;
+}
 
-        /* Form Section */
-        .form-section {
-            display: none;
-            text-align: left;
-        }
+.form-section {
+    display: none;
+    text-align: left;
+}
 
-        .form-control {
-            border-radius: 10px;
-            padding: 10px;
-        }
+.form-control {
+    border-radius: 10px;
+    padding: 10px;
+}
 
-        .form-control:focus {
-            border-color: #00a859;
-            box-shadow: 0 0 6px rgba(0,168,89,0.5);
-        }
+.pay-btn, .proceed-btn {
+    background-color: #00a859;
+    color: #fff;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 10px;
+}
 
-        .pay-btn, .proceed-btn {
-            background-color: #00a859;
-            color: #fff;
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: none;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .pay-btn:disabled {
-            background-color: #a5d6a7;
-            cursor: not-allowed;
-        }
-
-        .loader {
-            border: 3px solid #fff;
-            border-top: 3px solid #00a859;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            margin-right: 5px;
-        }
-
-        @keyframes spin {
-            from {transform: rotate(0deg);}
-            to {transform: rotate(360deg);}
-        }
-
-        /* Responsive */
-        @media (max-width: 480px) {
-            .payment-card { width: 95%; padding: 15px; }
-            .product-preview { max-width: 180px; }
-            .pay-btn, .proceed-btn { font-size: 0.85rem; padding: 8px; }
-        }
-    </style>
+.pay-btn:disabled {
+    background-color: #a5d6a7;
+}
+</style>
 </head>
 <body>
 
 <div class="payment-card">
     <h2>Avon Fashions <i class="fa-brands fa-shopify" style="color:#0db14b;"></i></h2>
 
-    <!-- Step 1: Product Display -->
+    <!-- Step 1: Product Section -->
     <div id="productSection">
-        <img id="productImage" class="product-preview" src="" alt="Product Image">
-        <h4 id="productName"></h4>
-        <p>KES <span id="productPrice"></span></p>
+        <img id="productImage" class="product-preview" src="https://images.pexels.com/photos/6311391/pexels-photo-6311391.jpeg" alt="Classic Handbag">
+        <h4 id="productName">Elegant Leather Handbag</h4>
+        <p>KES <span id="productPrice">4500</span></p>
         <button class="proceed-btn" id="proceedBtn">Proceed to Pay</button>
     </div>
 
     <!-- Step 2: Payment Form -->
     <div id="formSection" class="form-section">
-        <form id="paymentForm" novalidate>
+        <form id="paymentForm">
             <div class="mb-3">
-                <label for="fullName">Full Name</label>
-                <input type="text" class="form-control" id="fullName" placeholder="Enter full name" required>
+                <label>Full Name</label>
+                <input type="text" id="fullName" class="form-control" placeholder="Enter full name" required>
             </div>
             <div class="mb-3">
-                <label for="phoneNumber">Phone Number</label>
-                <input type="tel" class="form-control" id="phoneNumber" maxlength="10" placeholder="Enter phone number" required>
+                <label>Phone Number</label>
+                <input type="tel" id="phoneNumber" class="form-control" maxlength="10" placeholder="07XXXXXXXX" required>
             </div>
             <div class="mb-3">
-                <label for="deliveryDate">Delivery Date</label>
-                <input type="date" class="form-control" id="deliveryDate" required>
+                <label>Delivery Date</label>
+                <input type="date" id="deliveryDate" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label for="amount">Amount (KES)</label>
-                <input type="number" class="form-control" id="amount" placeholder="Enter amount" required>
+                <label>Amount (KES)</label>
+                <input type="number" id="amount" class="form-control" placeholder="Enter any amount" required>
             </div>
-            <button type="button" class="pay-btn" id="payBtn" disabled><span class="btn-text">Pay Now</span></button>
+            <button type="button" class="pay-btn" id="payBtn" disabled>Pay Now</button>
         </form>
     </div>
 </div>
 
 <script>
-    // Fetch product details from URL
-    const params = new URLSearchParams(window.location.search);
-    const productName = params.get('name');
-    const productPrice = params.get('price');
-    const productImg = params.get('img');
+// Move to form section
+document.getElementById('proceedBtn').addEventListener('click', () => {
+    document.getElementById('productSection').style.display = 'none';
+    document.getElementById('formSection').style.display = 'block';
 
-    document.getElementById('productName').textContent = productName;
-    document.getElementById('productPrice').textContent = productPrice;
-    document.getElementById('productImage').src = productImg;
+    // Set today's date as minimum delivery
+    const today = new Date().toISOString().split("T")[0];
+    document.getElementById("deliveryDate").setAttribute("min", today);
+});
 
-    // Switch to form section
-    document.getElementById('proceedBtn').addEventListener('click', () => {
-        document.getElementById('productSection').style.display = 'none';
-        document.getElementById('formSection').style.display = 'block';
-        document.getElementById('amount').value = productPrice || '';
+// Inputs
+const fullName = document.getElementById("fullName");
+const phoneNumber = document.getElementById("phoneNumber");
+const deliveryDate = document.getElementById("deliveryDate");
+const amount = document.getElementById("amount");
+const payBtn = document.getElementById("payBtn");
 
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('deliveryDate').setAttribute('min', today);
-    });
+// Form validation
+function validateForm() {
+    const nameValid = fullName.value.trim().length > 1;
+    const phoneValid = /^\d{10}$/.test(phoneNumber.value.trim());
+    const dateValid = deliveryDate.value !== "";
+    const amountValid = Number(amount.value) > 0;
+    payBtn.disabled = !(nameValid && phoneValid && dateValid && amountValid);
+}
 
-    // Form Validation
-    const fullName = document.getElementById('fullName');
-    const phone = document.getElementById('phoneNumber');
-    const date = document.getElementById('deliveryDate');
-    const amount = document.getElementById('amount');
-    const payBtn = document.getElementById('payBtn');
+[fullName, phoneNumber, deliveryDate, amount].forEach(input => {
+    input.addEventListener("input", validateForm);
+});
 
-    function validate() {
-        const valid = fullName.value.trim().length > 1 &&
-            /^\d{10}$/.test(phone.value) &&
-            date.value &&
-            Number(amount.value) > 0;
-        payBtn.disabled = !valid;
-    }
-
-    [fullName, phone, date, amount].forEach(input => input.addEventListener('input', validate));
-
-    // Payment Redirect
-    payBtn.addEventListener('click', () => {
-        payBtn.innerHTML = '<span class="loader"></span> Processing...';
-        payBtn.disabled = true;
-
-        setTimeout(() => {
-            const accountId = "3513";
-            const channelId = "4064";
-            const reference = "REF" + Date.now();
-
-            const paymentURL = `https://app.payhero.co.ke/lipwa/${accountId}?amount=${amount.value.trim()}&phone=${phone.value.trim()}&name=${encodeURIComponent(fullName.value.trim())}&channel_id=${channelId}&reference=${reference}`;
-
-            window.location.href = paymentURL;
-        }, 2000);
-    });
+// Direct payment redirect
+payBtn.addEventListener('click', () => {
+    const accountId = "3513";
+    const channelId = "4064";
+    const reference = "REF" + Date.now();
+    const url = `https://app.payhero.co.ke/lipwa/${accountId}?amount=${amount.value.trim()}&phone=${phoneNumber.value.trim()}&name=${encodeURIComponent(fullName.value.trim())}&channel_id=${channelId}&reference=${reference}`;
+    window.location.href = url;
+});
 </script>
 
 </body>
