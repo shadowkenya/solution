@@ -157,12 +157,7 @@ function validateForm() {
     const nameValid = fullName.value.trim().length > 1;
     const phoneValid = /^\d{10}$/.test(phoneNumber.value.trim());
     const dateValid = deliveryDate.value !== "";
-    let amtValid = amount.value !== "" && Number(amount.value) > 0 && Number(amount.value) <= 500;
-    if(amount.value !== "" && Number(amount.value) > 500) {
-        alert("Amount must not exceed 500 KES");
-        amount.value = "";
-        amtValid = false;
-    }
+    const amtValid = amount.value !== "" && Number(amount.value) > 0 && Number(amount.value) <= 500;
     payBtn.disabled = !(nameValid && phoneValid && dateValid && amtValid);
 }
 [fullName, phoneNumber, deliveryDate].forEach(i => i.addEventListener("input", validateForm));
