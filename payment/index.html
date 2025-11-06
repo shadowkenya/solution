@@ -17,7 +17,6 @@ html, body {
     justify-content: center;
 }
 
-/* Payment Card */
 .payment-card {
     background: #ffffffee;
     border-radius: 20px;
@@ -29,7 +28,6 @@ html, body {
     position: relative;
 }
 
-/* Product image */
 .product-preview {
     width: 100%;
     max-width: 250px;
@@ -39,7 +37,6 @@ html, body {
     display: block;
 }
 
-/* Form */
 .form-section {
     display: none;
     text-align: left;
@@ -73,7 +70,6 @@ html, body {
 }
 @keyframes spin { 0% {transform:rotate(0deg);} 100% {transform:rotate(360deg);} }
 
-/* Responsive */
 @media(max-width:480px) {
     .payment-card { width: 95%; padding: 15px; }
     .product-preview { max-width: 180px; }
@@ -87,7 +83,6 @@ html, body {
 <div class="payment-card">
     <h2>Avon Fashions <i class="fa-brands fa-shopify" style="color:#0db14b;"></i></h2>
 
-    <!-- Step 1: Show product -->
     <div id="productSection">
         <img id="productImage" class="product-preview" src="" alt="Product Image">
         <h4 id="productName"></h4>
@@ -95,7 +90,6 @@ html, body {
         <button class="proceed-btn" id="proceedBtn">Proceed to Pay</button>
     </div>
 
-    <!-- Step 2: Form -->
     <div id="formSection" class="form-section">
         <form id="paymentForm" novalidate>
             <div class="mb-3">
@@ -108,11 +102,11 @@ html, body {
             </div>
             <div class="mb-3">
                 <label for="deliveryDate">Delivery Date</label>
-                <input type="date" class="form-control" id="deliveryDate" onfocus="this.showPicker()" required>
+                <input type="date" class="form-control" id="deliveryDate" required>
             </div>
             <div class="mb-3">
                 <label for="amount">Amount (KES)</label>
-                <input type="number" class="form-control" id="amount" readonly>
+                <input type="number" class="form-control" id="amount" placeholder="Enter amount" required>
             </div>
             <button type="button" class="pay-btn" id="payBtn"><span class="btn-text">Pay Now</span></button>
         </form>
@@ -120,18 +114,11 @@ html, body {
 </div>
 
 <script>
-// Get product info from URL
 const urlParams = new URLSearchParams(window.location.search);
-const productName = urlParams.get('name');
-const productPrice = urlParams.get('price');
-const productImg = urlParams.get('img');
+document.getElementById('productName').textContent = urlParams.get('name');
+document.getElementById('productPrice').textContent = urlParams.get('price');
+document.getElementById('productImage').src = urlParams.get('img');
 
-// Populate Step 1
-document.getElementById('productName').textContent = productName;
-document.getElementById('productPrice').textContent = productPrice;
-document.getElementById('productImage').src = productImg;
-
-// Proceed to form
 const proceedBtn = document.getElementById('proceedBtn');
 const productSection = document.getElementById('productSection');
 const formSection = document.getElementById('formSection');
@@ -139,14 +126,11 @@ const formSection = document.getElementById('formSection');
 proceedBtn.addEventListener('click', () => {
     productSection.style.display = 'none';
     formSection.style.display = 'block';
-    document.getElementById('amount').value = productPrice;
 
-    // Set minimum delivery date to today
     const today = new Date().toISOString().split("T")[0];
     document.getElementById("deliveryDate").setAttribute("min", today);
 });
 
-// Form validation
 const fullName = document.getElementById("fullName"),
       phoneNumber = document.getElementById("phoneNumber"),
       deliveryDate = document.getElementById("deliveryDate"),
@@ -157,12 +141,11 @@ function validateForm() {
     const nameValid = fullName.value.trim().length > 1;
     const phoneValid = /^\d{10}$/.test(phoneNumber.value.trim());
     const dateValid = deliveryDate.value !== "";
-    const amtValid = amount.value !== "" && Number(amount.value) > 0 && Number(amount.value) <= 500;
+    const amtValid = amount.value !== "" && Number(amount.value) > 0;
     payBtn.disabled = !(nameValid && phoneValid && dateValid && amtValid);
 }
-[fullName, phoneNumber, deliveryDate].forEach(i => i.addEventListener("input", validateForm));
+[fullName, phoneNumber, deliveryDate, amount].forEach(i => i.addEventListener("input", validateForm));
 
-// PayHero redirect with 2s loader
 payBtn.addEventListener('click', () => {
     const btnText = payBtn.querySelector('.btn-text');
     btnText.innerHTML = '<div class="loader"></div> Processing...';
